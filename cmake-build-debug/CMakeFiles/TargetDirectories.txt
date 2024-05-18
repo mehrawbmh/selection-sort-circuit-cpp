@@ -1,0 +1,3 @@
+/home/mehrab/CLionProjects/OO/CA4/cmake-build-debug/CMakeFiles/CA4.dir
+/home/mehrab/CLionProjects/OO/CA4/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mehrab/CLionProjects/OO/CA4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
