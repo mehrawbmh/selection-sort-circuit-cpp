@@ -14,4 +14,6 @@ add_executable(
         datapath.cpp
         controller.hpp
         controller.cpp
+        ssc.hpp
+        ssc.cpp
 )
