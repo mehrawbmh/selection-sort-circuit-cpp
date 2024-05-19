@@ -38,25 +38,13 @@ int main() {
     dp.initRegisterFile();
     start.fill('1');
 
-//    for (int i=0; i<600000; i++) {
-//        cout << "\n^^^ loop " << i << ": ^^^\n";
-//        if (i==2) start.fill('1'); else start.fill('0');
-//        dp.evl();
-//        ctr.evl();
-////        cout << "^^^ end loop " << i << " ^^^\n" << endl;
-//        if (done=="1"){
-//            cout << "***************\n\n\nDONE************\n\n\n";
-//            break;
-//        }
-//    }
-
     while (done != "1") {
         dp.evl();
         ctr.evl();
         start.fill('0');
     }
 
-    dp.dumpRegisterFile("final.txt");
+    dp.dumpRegisterFile("sorted2.txt");
 
 
     cout << "program finished. " << endl;
