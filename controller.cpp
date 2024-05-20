@@ -32,7 +32,7 @@ void Controller::evl() {
             break;
         }
         case 4: //inner loop
-            nState = count2->at(REG_FILE_ADDR_SIZE) == "0" ? 5 : shouldSwap ? 7 : 9;
+            nState = count2->ival() < (REG_FILE_WORDS - 1) ? 5 : shouldSwap ? 7 : 9;
             break;
         case 5: //compare
             nState = lt->at(0) == "1" ? 6 : 4;
@@ -113,7 +113,9 @@ void Controller::evl() {
     }
 
 //    cout <<  "step " << count1->ival() << " " << *count1 << " " << pState << ":" << nState << endl;
-    this->report();
+    if (count1->ival() == 1 && count2->ival() < 3) {
+        this->report();
+    }
     pState = (rst->ival() == 1) ? 0 : (*clk == "P") ? nState: pState;
 
 }

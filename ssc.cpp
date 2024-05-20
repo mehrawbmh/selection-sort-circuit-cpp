@@ -44,7 +44,7 @@ void SSC::evl() {
         start->fill('0');
     }
 
-    dp.dumpRegisterFile("sorted_v1.txt");
+    dp.dumpRegisterFile("final_sorted.txt");
 
 
     cout << "program finished. " << endl;

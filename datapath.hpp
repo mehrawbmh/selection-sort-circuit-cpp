@@ -44,7 +44,7 @@ public:
             selMin(&selMin_), regRdEn(&rdEn), regWrEn(&wrEn), ldMinAdr(&ldMinAdr_),
             ldTmp(&ldTmp_), ldMinVal(&ldMinVal_), count1(&count1_), count2(&count2_),
             cmp(readData, minVal, *lt, eq, gt),
-            regFile(*rst, *clk, *regRdEn, *regWrEn, tempReg, adrBus, readData, REG_FILE_WORDS+1),
+            regFile(*rst, *clk, *regRdEn, *regWrEn, tempReg, adrBus, readData, REG_FILE_WORDS),
             minAddress(*count2, *clk, *rst, *ldMinAdr, minAdr),
             minValue(readData, *clk, *rst, *ldMinVal, minVal),
             tempRegister(tempRegIn, *clk, *rst, *ldTmp, tempReg),
