@@ -1,15 +1,11 @@
-//
-// Created by mehrab on 19/05/24.
-//
-
 #include "ssc.hpp"
 #include "controller.hpp"
 #include "datapath.hpp"
 
 SSC::SSC(bus &clk_, bus &rst_, bus &start_, bus &done_): clk(&clk_), rst(&rst_), start(&start_), done(&done_)
 {
-    count1 = bus(9);
-    count2 = bus(9);
+    count1 = bus(REG_FILE_ADDR_SIZE+1);
+    count2 = bus(REG_FILE_ADDR_SIZE+1);
     cnt1Ld = bus("0");
     cnt2Ld = bus("0");
     cnt1En = bus("0");
@@ -48,7 +44,7 @@ void SSC::evl() {
         start->fill('0');
     }
 
-    dp.dumpRegisterFile("mehrab.txt");
+    dp.dumpRegisterFile("sorted_v1.txt");
 
 
     cout << "program finished. " << endl;

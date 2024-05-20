@@ -229,7 +229,6 @@ void Memory::init(const string &filename) {
 
 void Memory::dump(const string &filename) {
     ofstream fout(filename);
-//    fout << "listing follows:\n";
 //    cout << "listing follows:\n";
     for (int i = 0; i < N; i++) {
         fout << i << ": " << mem[i] << "\n";
@@ -243,7 +242,7 @@ void Memory::evl() {
         for (int i = 0; i < N; i++) mem[i].fill('0');
     } else if (read->at(0) == "1") {
         *Dout = mem[address.ival()];
-		cout << "Memory read: @" << address.ival() << ": " << *Dout << "\n";
+//		cout << "Memory read: @" << address.ival() << ": " << *Dout << "\n";
     } else if (clk->at(0) == "P") {
         if (write->at(0) == "1") {
             mem[address.ival()] = *Din;

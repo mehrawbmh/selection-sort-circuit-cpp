@@ -12,7 +12,7 @@ void Datapath::evl() {
     cmp.evl();
 
 //    cout << "clock & reset: " << *clk << *rst << endl << endl;
-//    this->report();
+    this->report();
 }
 
 void Datapath::initRegisterFile() {

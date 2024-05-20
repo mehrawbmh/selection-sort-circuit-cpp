@@ -2,8 +2,11 @@
 #define CA4_DATAPATH_HPP
 
 #include "classVectorPrimitives.h"
+#include <cmath>
 
-#define REG_FILE_SIZE 256
+#define REG_FILE_WORDS 256
+#define REG_FILE_WORD_SIZE 16
+#define REG_FILE_ADDR_SIZE log2(REG_FILE_WORDS)
 
 class Datapath {
 private:
@@ -41,7 +44,7 @@ public:
             selMin(&selMin_), regRdEn(&rdEn), regWrEn(&wrEn), ldMinAdr(&ldMinAdr_),
             ldTmp(&ldTmp_), ldMinVal(&ldMinVal_), count1(&count1_), count2(&count2_),
             cmp(readData, minVal, *lt, eq, gt),
-            regFile(*rst, *clk, *regRdEn, *regWrEn, tempReg, adrBus, readData, REG_FILE_SIZE),
+            regFile(*rst, *clk, *regRdEn, *regWrEn, tempReg, adrBus, readData, REG_FILE_WORDS+1),
             minAddress(*count2, *clk, *rst, *ldMinAdr, minAdr),
             minValue(readData, *clk, *rst, *ldMinVal, minVal),
             tempRegister(tempRegIn, *clk, *rst, *ldTmp, tempReg),
@@ -49,11 +52,13 @@ public:
             selAdrMux(*count1, *count2, minAdr, *selAdr, adrBus),
             cnt1(cn1LoadData, *clk, *rst, *cnt1Load, *cnt1Enable, *count1),
             cnt2(*count1, *clk, *rst, *cnt2Load, *cnt2Enable, *count2) {
-        this->minAdr = bus(8);
-        this->minVal = bus(16);
-        this->readData = bus(16);
-        this->tempRegIn = bus(16);
-        this->tempReg = bus(16);
+        int wordSize = REG_FILE_WORD_SIZE;
+        int addressSize = REG_FILE_ADDR_SIZE;
+        this->minAdr = bus(addressSize);
+        this->minVal = bus(wordSize);
+        this->readData = bus(wordSize);
+        this->tempRegIn = bus(wordSize);
+        this->tempReg = bus(wordSize);
     }
 
     void dumpRegisterFile(const string &dumpFileName);

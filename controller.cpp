@@ -1,4 +1,5 @@
 #include "controller.hpp"
+#include "datapath.hpp"
 
 void Controller::evl() {
     //set default values for outputs
@@ -31,7 +32,7 @@ void Controller::evl() {
             break;
         }
         case 4: //inner loop
-            nState = count2->at(8) == "0" ? 5 : shouldSwap ? 7 : 10;
+            nState = count2->at(REG_FILE_ADDR_SIZE) == "0" ? 5 : shouldSwap ? 7 : 9;
             break;
         case 5: //compare
             nState = lt->at(0) == "1" ? 6 : 4;
@@ -48,7 +49,7 @@ void Controller::evl() {
             nState = 9;
             break;
         case 9: //outer loop
-            nState = count1->at(8) == "0" ? 2 : 10;
+            nState = count1->ival() < REG_FILE_WORDS ? 2 : 10;
             break;
         case 10: //DONE
             nState = 0;
@@ -60,7 +61,6 @@ void Controller::evl() {
     switch (pState) {
         case 0: //IDLE
         case 1: //Reset
-//            rst->fill('1');
             break;
         case 2: { //LoadCnt2
             cnt2Load->fill('1');
@@ -77,7 +77,6 @@ void Controller::evl() {
             break;
         }
         case 4: { //inner loop
-//            selMin->fill('0'); //todo: one or zero?
             cnt2Enable->fill('1');
             selAdr->fill("01");
             regRdEn->fill('1');
@@ -113,9 +112,8 @@ void Controller::evl() {
             break;
     }
 
-//    this->report();
-//    cout << "counter " << count1->ival() << ": " << count2->ival() << endl;
-//    cout << pState  << " : " << nState << '\t';
+//    cout <<  "step " << count1->ival() << " " << *count1 << " " << pState << ":" << nState << endl;
+    this->report();
     pState = (rst->ival() == 1) ? 0 : (*clk == "P") ? nState: pState;
 
 }

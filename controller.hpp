@@ -1,7 +1,3 @@
-//
-// Created by mehrab on 18/05/24.
-//
-
 #ifndef CA4_CONTROLLER_HPP
 #define CA4_CONTROLLER_HPP
 
