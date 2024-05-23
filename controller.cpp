@@ -112,10 +112,6 @@ void Controller::evl() {
             break;
     }
 
-//    cout <<  "step " << count1->ival() << " " << *count1 << " " << pState << ":" << nState << endl;
-    if (count1->ival() == 1 && count2->ival() < 3) {
-        this->report();
-    }
     pState = (rst->ival() == 1) ? 0 : (*clk == "P") ? nState: pState;
 
 }
